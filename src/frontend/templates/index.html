@@ -1,0 +1,16 @@
+{% extends "template.html" %}
+{% block title %}CosmoBoard Home{% endblock %}
+
+{% block content %}
+<section id="search">
+    <form action="/search" method="get">
+        <input type="text" name="query" placeholder="Search publications...">
+        <button type="submit">Search</button>
+    </form>
+</section>
+
+<section id="results">
+    <h2>Results</h2>
+    <p>{{results}}</p>
+</section>
+{% endblock %}
