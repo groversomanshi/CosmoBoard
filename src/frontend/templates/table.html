@@ -1,0 +1,20 @@
+<section>
+    <table>
+        <thead>
+            <tr>
+                {% for col in columns %}
+                <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in display %}
+            <tr>
+                {% for col in columns %}
+                <td>{{ row[col] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
