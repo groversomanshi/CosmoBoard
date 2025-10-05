@@ -4,6 +4,12 @@ body {
     background-color: #0b0c2a;
     color: #ffffff;
 }
+table {
+    border: 1px solid #000;
+
+}
+
+
 
 header {
     background-color: #1a1b3a;
