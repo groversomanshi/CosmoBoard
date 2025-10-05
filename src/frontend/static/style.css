@@ -5,7 +5,7 @@ body {
     color: #ffffff;
 }
 table, thead, tr, tbody, th {
-    border: 1px solid #000;
+    border: 1px solid white;
 
 }
 
