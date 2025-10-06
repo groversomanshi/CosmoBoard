@@ -1,0 +1,5 @@
+Flask
+aws-wsgi
+awsgi
+pandas
+scikit-learn
