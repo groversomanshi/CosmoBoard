@@ -1,0 +1,108 @@
+{% extends "template.html" %}
+{% block title %}{{ dataset.name }} - CosmoBoard{% endblock %}
+
+{% block content %}
+<section id="dataset-detail">
+    <div class="dataset-header">
+        <h1>{{ dataset.name }}</h1>
+        <div class="dataset-meta">
+            <p><strong>Dataset ID:</strong> {{ dataset.id }}</p>
+            {% if dataset.url %}
+            <p><strong>External Link:</strong> <a href="{{ dataset.url }}" target="_blank" class="external-link">View Dataset</a></p>
+            {% endif %}
+            {% if dataset.description %}
+            <p><strong>Description:</strong> {{ dataset.description }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="content-sections">
+        <section id="related-publications">
+            <h2>Related Publications</h2>
+            {% if related_publications %}
+                <div class="publication-list">
+                    {% for pub in related_publications %}
+                    <div class="publication-item">
+                        <h3><a href="{{ url_for('publication_detail', pmcid=pub.pmcid) }}">{{ pub.title }}</a></h3>
+                        <p><strong>PMCID:</strong> {{ pub.pmcid }}</p>
+                        {% if pub.paper_url %}
+                        <a href="{{ pub.paper_url }}" target="_blank" class="external-link">View on PubMed</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No related publications found.</p>
+            {% endif %}
+        </section>
+    </div>
+</section>
+
+<style>
+    .dataset-header {
+        background-color: #1f2040;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+    
+    .dataset-header h1 {
+        color: #ffffff;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+    }
+    
+    .dataset-meta p {
+        margin: 10px 0;
+        color: #cccccc;
+    }
+    
+    .external-link {
+        color: #4a9eff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    .external-link:hover {
+        text-decoration: underline;
+    }
+    
+    .content-sections {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .publication-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .publication-item {
+        background-color: #2a2b4a;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #4a9eff;
+    }
+    
+    .publication-item h3 {
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+    
+    .publication-item h3 a {
+        color: #4a9eff;
+        text-decoration: none;
+    }
+    
+    .publication-item h3 a:hover {
+        text-decoration: underline;
+    }
+    
+    .publication-item p {
+        color: #cccccc;
+        margin: 5px 0;
+    }
+</style>
+{% endblock %}

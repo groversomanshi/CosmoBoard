@@ -3,14 +3,13 @@
 
 {% block content %}
 <section id="search">
-    <form action="/search" method="get">
+    <form action="/" method="get">
         <input type="text" name="query" placeholder="Search publications...">
         <button type="submit">Search</button>
     </form>
 </section>
 
 <section id="results">
-    <h2>Results</h2>
-    <p>{{results}}</p>
+    {% include 'table.html' %}
 </section>
 {% endblock %}

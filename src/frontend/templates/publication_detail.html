@@ -1,0 +1,128 @@
+{% extends "template.html" %}
+{% block title %}{{ paper.title }} - CosmoBoard{% endblock %}
+
+{% block content %}
+<section id="publication-detail">
+    <div class="publication-header">
+        <h1>{{ paper.title }}</h1>
+        <div class="publication-meta">
+            <p><strong>PMCID:</strong> {{ paper.pmcid }}</p>
+            <p><strong>External Link:</strong> <a href="{{ paper.paper_url }}" target="_blank" class="external-link">View on PubMed</a></p>
+        </div>
+    </div>
+
+    <div class="content-sections">
+        <section id="datasets">
+            <h2>Related Datasets</h2>
+            {% if datasets %}
+                <div class="dataset-list">
+                    {% for dataset in datasets %}
+                    <div class="dataset-item">
+                        <h3>{{ dataset.dataset_id }}</h3>
+                        <p><strong>Type:</strong> {{ dataset.dataset_type }}</p>
+                        {% if dataset.dataset_url %}
+                        <a href="{{ dataset.dataset_url }}" target="_blank" class="external-link">View Dataset</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No related datasets found.</p>
+            {% endif %}
+        </section>
+
+        <section id="recommendations">
+            <h2>Recommended Publications</h2>
+            <p>Based on ML analysis, you might also be interested in these similar publications:</p>
+            {% if similar_papers %}
+                <div class="recommendation-list">
+                    {% for rec in similar_papers %}
+                    <div class="recommendation-item">
+                        <h3><a href="{{ url_for('publication_detail', pmcid=rec.pmcid) }}">{{ rec.title }}</a></h3>
+                        <p><strong>PMCID:</strong> {{ rec.pmcid }}</p>
+                        <p><strong>Similarity Score:</strong> {{ "%.2f"|format(rec.score) }}</p>
+                        <a href="{{ rec.paper_url }}" target="_blank" class="external-link">View on PubMed</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No recommendations available.</p>
+            {% endif %}
+        </section>
+    </div>
+</section>
+
+<style>
+    .publication-header {
+        background-color: #1f2040;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+    
+    .publication-header h1 {
+        color: #ffffff;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+    }
+    
+    .publication-meta p {
+        margin: 10px 0;
+        color: #cccccc;
+    }
+    
+    .external-link {
+        color: #4a9eff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    .external-link:hover {
+        text-decoration: underline;
+    }
+    
+    .content-sections {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    
+    .dataset-list, .recommendation-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .dataset-item, .recommendation-item {
+        background-color: #2a2b4a;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #4a9eff;
+    }
+    
+    .dataset-item h3, .recommendation-item h3 {
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+    
+    .recommendation-item h3 a {
+        color: #4a9eff;
+        text-decoration: none;
+    }
+    
+    .recommendation-item h3 a:hover {
+        text-decoration: underline;
+    }
+    
+    .dataset-item p, .recommendation-item p {
+        color: #cccccc;
+        margin: 5px 0;
+    }
+    
+    @media (max-width: 768px) {
+        .content-sections {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}

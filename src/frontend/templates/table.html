@@ -5,6 +5,7 @@
                 {% for col in columns %}
                 <th>{{ col }}</th>
                 {% endfor %}
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -13,8 +14,37 @@
                 {% for col in columns %}
                 <td>{{ row[col] }}</td>
                 {% endfor %}
+                <td class="actions">
+                    {% if row.publication_id %}
+                    <a href="{{ url_for('publication_detail', pmcid=row.publication_id) }}" class="btn-link">View Publication</a>
+                    {% endif %}
+                    {% if row.dataset_id %}
+                    <a href="{{ url_for('dataset_detail', dataset_id=row.dataset_id) }}" class="btn-link">View Dataset</a>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </section>
+
+<style>
+    .actions {
+        white-space: nowrap;
+    }
+    
+    .btn-link {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 2px;
+        background-color: #3a3b6a;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 3px;
+        font-size: 0.9em;
+    }
+    
+    .btn-link:hover {
+        background-color: #5052a0;
+    }
+</style>
