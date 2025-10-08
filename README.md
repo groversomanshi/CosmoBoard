@@ -1,5 +1,5 @@
 # CosmoBoard
-Live site: https://t8vlbhpkph.execute-api.eu-north-1.amazonaws.com/Dev/ (may not reflect the latest version)
+Live site: https://t8vlbhpkph.execute-api.eu-north-1.amazonaws.com/Dev/ (may not reflect the latest version)<br>
 Note: This GitHub repository contains the most recent code and updates.
 
 The NASA-Cosmoboard Space Biology Dashboard is part of the 2025 NASA Space Apps Challenge. It aims to provide scientists, mission planners, and managers with a dynamic interface to explore and summarize decades of NASA bioscience publications. This project uses a context-aware search engine that compiles research papers, links each to its underlying NASA datasets, and recommends similar publications, and presents a user-friendly layout for accessing all related research with Space Biology topics.
@@ -14,7 +14,7 @@ Python, HTML, CSS, Flask, and AWS Lambda
 After developing the frontend and backend independently, we used Cursor’s AI assistance to help integrate the recommender ML model into the Flask container, ensuring each publication had its own page and relevant recommendations.
 
 ## NASA Data
-[NASA OSDR: Open Science for Life in Space](https://osdr.nasa.gov/bio/repo/search?q=&data_source=cgene,alsda,esa&data_type=study)
+[NASA OSDR: Open Science for Life in Space](https://osdr.nasa.gov/bio/repo/search?q=&data_source=cgene,alsda,esa&data_type=study)<br>
 [SB_Publications](https://github.com/jgalazka/SB_publications)
 
 ## 💾 Database Tables
